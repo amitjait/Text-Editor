@@ -127,6 +127,12 @@ public class TextEditor extends JFrame implements ActionListener {
         selectAllItem = new JMenuItem("Select All");
         copyItem = new JMenuItem("Copy");
 
+        cutItem.addActionListener(this);
+        pasteItem.addActionListener(this);
+        selectAllItem.addActionListener(this);
+        copyItem.addActionListener(this);
+
+
         editMenu.add(cutItem);
         editMenu.add(pasteItem);
         editMenu.add(selectAllItem);
@@ -141,6 +147,11 @@ public class TextEditor extends JFrame implements ActionListener {
         darkThemeItem = new JMenuItem("Dark Theme");
         lightThemeItem = new JMenuItem("Light Theme");
         cutomeThemeItem = new JMenuItem("Custome theme");
+
+
+        darkThemeItem.addActionListener(this);
+        lightThemeItem.addActionListener(this);
+        cutomeThemeItem.addActionListener(this);
 
         themeMenu.add(darkThemeItem);
         themeMenu.add(lightThemeItem);
@@ -244,6 +255,34 @@ public class TextEditor extends JFrame implements ActionListener {
 
         if(e.getSource() == exitItem){
             System.exit(0);
+            
+        }
+
+        // theme menu
+        
+        if(e.getSource() == darkThemeItem){
+            textArea.setBackground(Color.black);
+            textArea.setForeground(Color.white);
+            
+        }
+
+        if(e.getSource() == lightThemeItem){
+            textArea.setBackground(Color.white);
+            textArea.setForeground(Color.black);
+            
+        }
+
+        if(e.getSource() == cutomeThemeItem){
+            JColorChooser colorChooser = new JColorChooser();
+
+            Color backColor = colorChooser.showDialog(null, "Choose BackGround Color" , Color.black);
+
+            textArea.setBackground(backColor);
+
+            Color textColor = colorChooser.showDialog(null, "Choose Text Color" , Color.black);
+
+            textArea.setForeground(textColor);
+            
         }
         
     }
